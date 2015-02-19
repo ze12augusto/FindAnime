@@ -6,6 +6,7 @@ import anitube
 from config import Config
 
 def usage(exitCode):
+	print("findAnime.py -r <boolean>")
 	print("findAnime.py -n <anime's name>")
 	print("or")
 	print("findAnime.py -n <anime's name> -s <server to search>")
@@ -29,7 +30,7 @@ def checkArgv(argv):
 	if len(argv) == 0:
 		usage(2)
 	try:
-		opts, args = getopt.getopt(argv,"hn:s:",["name=","server="])
+		opts, args = getopt.getopt(argv,"hn:s:r:",["name=","server=", "reset="])
 	except getopt.GetoptError:
 		usage(2)
 	for opt, arg in opts:
@@ -39,6 +40,12 @@ def checkArgv(argv):
 			__args__["name"] = arg.replace(" ", "+")
 		elif opt in ("-s", "--server"):
 			__args__["server"] = arg
+		elif opt in ("-r", "--reset"):
+			if arg == "true":
+				print("Reseting cache")
+				Config.executeCmdCommand("rm -rf " + Config.getConfigFolder())
+				sys.exit()
+			print("Do nothing")
 
 	if "name" not in __args__:
 		usage(2)

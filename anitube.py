@@ -44,13 +44,13 @@ def getAnimesDescription(url, anime, ready):
 
 def parseHtmlAndGetDescription(html, anime, url):
 	soup = BeautifulSoup(html)
-	description = ""
+	description = "\n\nIntroduction:\n\n\t"
 	for div in soup.find_all('div'):
 		if "class" in div.attrs:
 			if "mainBox" in div["class"]:
 				li = div.find("ul").find_all("li")[1]
-				description = str(li.find("p").string)
-				description += "\n\nURL: " + url
+				description += str(li.find("p").string)
+				description += "\n\nURL:\n\n\t" + url + " \n"
 				Config.write_text_on_temp_file( anime["name"], description )
 				Config.showDataFromTempFile(anime["name"])
 				sys.exit()
