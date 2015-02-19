@@ -5,7 +5,7 @@ tar -vzxf beautifulsoup4-4.1.0.tar.gz
 cd beautifulsoup4-4.1.0
 python3.4 setup.py install
 
-wget wget https://bootstrap.pypa.io/ez_setup.py
+wget https://bootstrap.pypa.io/ez_setup.py
 python3.4 ez_setup.py
 
 wget https://pypi.python.org/packages/source/j/jellyfish/jellyfish-0.3.4.tar.gz
