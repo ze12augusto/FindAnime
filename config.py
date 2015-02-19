@@ -32,7 +32,7 @@ class Config:
 		result = Config.executeCmdCommand(command)
 		result = result.split("\\n")
 		for name in result:
-			if animesName in name:
+			if animesName == name.replace("b'",""):
 				Config.showDataFromTempFile(animesName)
 
 
